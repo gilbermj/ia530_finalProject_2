@@ -1,0 +1,44 @@
+var_name,clean_name
+month_end,Month End
+ment24,Mental Health No Good Adolescents
+gen24,General Health No Good Adolescents
+ment25,Mental Health No Good Adults
+gen25,General Health No Good Adults
+divorced,Divorced/Widowed/Separated
+apple,Apple Stock
+atandt,AT&T Stock
+verizon,Verizon Stock
+unemp,Unemployment Rate
+savings,Personal Savings Rate
+suicide24,Suicides Per Thousand Adolescents
+suicide25,Suicides Per Thousand Adults
+month_num,Month Number
+month_name,Month Name
+Apr,Apr
+Aug,Aug
+Dec,Dec
+Feb,Feb
+Jan,Jan
+Jul,Jul
+Jun,Jun
+Mar,Mar
+May,May
+Nov,Nov
+Oct,Oct
+Sep,Sep
+ment24_sa,Mental Health No Good Adolescents
+ment25_sa,Mental Health No Good Adults
+suicide24_sa,Suicides Per Thousand Adolescents
+suicide25_sa,Suicides Per Thousand Adults
+ment24_sa_station,Mental Health No Good Adolescents
+gen24_station,General Health No Good Adolescents
+ment25_sa_station,Mental Health No Good Adults
+gen25_station,General Health No Good Adults
+divorced_station,Divorced/Widowed/Separated
+apple_station,Apple Stock
+atandt_station,AT&T Stock
+verizon_station,Verizon Stock
+unemp_station,Unemployment Rate
+savings_station,Personal Savings Rate
+suicide24_sa_station,Suicides Per Thousand Adolescents
+suicide25_sa_station,Suicides Per Thousand Adults
