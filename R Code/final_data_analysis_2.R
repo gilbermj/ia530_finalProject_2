@@ -1,3 +1,14 @@
+### Description ################################################ 
+# Amy Moyer & Michael Gilbert
+# IA 530 Final Project
+# 
+# This file is the final analysis for the project
+# this includes functions and then code which are described below
+# 
+#
+#
+### Packages ################################################
+
 library(tidyverse)
 library(lubridate)
 library(here)
@@ -12,9 +23,7 @@ library(gt)
 library(webshot)
 library(knitr)
 
-############################################################
-
-# FUNCTIONS:
+### Functions #########################################################
 
 graph_vars <- function(data, vars, clean, dollars, percents, theme){
   
@@ -68,6 +77,9 @@ graph_vars <- function(data, vars, clean, dollars, percents, theme){
 test_station <- function(data, vars) {
   
   # function to test the variables in data for stationarity
+  # Arguments
+  #  data: data frame holding the variables to be tested for stationarity
+  #  vars: the variables to be tested for stationarity
   
   # vectors to hold the test statistics
   df_testStat <- c()
@@ -144,7 +156,7 @@ var_models <- function(data,
                        layout=NULL){
   
   # Function to fit a VAR model for the variables indicated and return the 
-  # irf functions graphed
+  # irf functions graphed in a list 
   # 
   # Arguments
   #   data: the data frame that holds the variables to be in the VAR model
@@ -186,9 +198,6 @@ var_models <- function(data,
   var_lag <- as.numeric(var_model$p)
   
   ts_names <- names(temp_data)
-
-  
-  ######################
   
   # tibbles to hold the impulse response functions as well as the lower and
   # upper bounds
@@ -278,9 +287,7 @@ var_models <- function(data,
   
 }
 
-###########################################################
-
-# Read in the Data
+### Read Data########################################################
 
 final_data <- read_csv(here('Data','final_data.csv'))
 
@@ -312,8 +319,8 @@ main_theme <- theme(panel.grid = element_blank(),
                     axis.text.x = element_text(size=8),
                     axis.text.y = element_text(size=8))
 
-#######################################################################
-# Graph the original data
+### Graph Variables ####################################################################
+
 
 # the "common variables" or the variables that are not age dependent
 common_vars <- c('apple', 'atandt', 'verizon', 'divorced', 'savings', 'unemp')
@@ -340,9 +347,8 @@ temp_list <- graph_vars(final_data, age_vars, clean_names, dollars, percents, ma
 grid <- grid.arrange(grobs=temp_list, nrow=2,top='')
 ggsave(here('Plots', 'age_variables.png'),plot=grid,dpi=300, width = 15, height = 9, units='in')
 
-#######################################################################
+### Test for Seasonality ####################################################################
 
-# Test for seasonality
 
 # Create month dummy variables
 final_data_2 <- final_data %>%
@@ -399,9 +405,8 @@ suicide25_coef_coef_pretty_table <- suicide25_coef_coef_tibble %>%
 
 gt::gtsave(suicide25_coef_coef_pretty_table ,here('Plots', 'suicide25_coef.png'))
 
-#######################################################################
+### Adjust for Seasonality ####################################################################
 
-# Adjust for seasonality
 
 # Remove seasonal component from suicide variables
 
@@ -430,9 +435,8 @@ final_data_3 <- bind_cols(final_data_2,
 final_data_3 <- final_data_3 %>%
   dplyr::select(!month_num:Sep)
 
-#######################################################################
+### Graph Before and After Seasonality ####################################################################
 
-# Graph before and after seasonality adjustments
 
 percents <- c(percents, 'ment24_sa', 'ment25_sa')
 
@@ -448,9 +452,7 @@ ggsave(here('Plots', 'after_season_adjust.png'),plot=grid,dpi=300, width = 15, h
 
 ts_final_data <- ts(final_data_3, start=c(1999,1), frequency=12)
 
-#######################################################################
-
-# Test for stationarity
+### Test for Stationarity ####################################################################
 
 # variables we will test for stationarity
 stationarity_vars <- c('gen24', 
@@ -476,9 +478,7 @@ nobs <- nrow(ts_final_data)
 final_data_3 <- final_data_3 %>%
   filter(month_end!=ymd('1999-01-31'))
 
-#######################################################################
-
-# Adjust for stationarity
+### Adjust for stationarity####################################################################
 
 for(i in 1:nvar){
   
@@ -501,9 +501,7 @@ for(i in 1:nvar){
   }
 }
 
-#######################################################################
-
-# Test after stationarity adjustment
+### Test after stationarity adjustment ####################################################################
 
 stationarity_vars <- c('gen24_station', 
                        'gen25_station', 
@@ -639,9 +637,7 @@ pretty_stationary <- final_stationarity %>%
 
 gt::gtsave(pretty_stationary ,here('Plots', 'stationarity_test_results.png'))
 
-#######################################################################
-
-# Graph variables after stationarity adjustments
+### Graph variables after stationarity adjustments####################################################################
 
 common_vars <- c('apple_station', 'atandt_station', 'verizon_station', 'divorced_station', 'savings_station', 'unemp_station')
 age_vars <- c('gen24_station', 'ment24_sa_station', 'suicide24_sa_station', 'gen25_station', 'ment25_sa_station', 'suicide25_sa_station')
@@ -654,9 +650,7 @@ temp_list <- graph_vars(final_data_3, age_vars, clean_names, dollars, percents, 
 grid <- grid.arrange(grobs=temp_list, nrow=2,top='')
 ggsave(here('Plots', 'age_variables_stationary.png'),plot=grid,dpi=300, width = 17, height = 8, units='in')
 
-#######################################################################
-
-# Create and graph VAR models
+### Create and graph VAR models####################################################################
 
 main_theme <- theme(panel.grid = element_blank(),
                     panel.background = element_blank(),
@@ -673,9 +667,7 @@ dpi <- 300
 height <- 5
 width <- 17
 
-#################################################################
-
-# Age 24 and Below (Adolescents)
+### Age 24 and Below (Adolescents)##############################################################
 
 # Following creates the irf for combination of variables and responses listed below
 
@@ -774,9 +766,7 @@ var_models(final_data_3,
            layout=layout)
 
 
-##########################################################################
-
-# Age 25 and Above (Adults)
+### Age 25 and Above (Adults)#######################################################################
 
 # Following creates the irf for combination of variables and responses listed below
 
@@ -923,9 +913,7 @@ temp_list <- c(list(temp_var_plots_1[[1]] +
 grid <- grid.arrange(grobs=temp_list, nrow=1,top='')
 ggsave(here('Plots', 'suicideOnly_VAR.png'),plot=grid,dpi=300, width = width, height = height, units='in')
 
-###############################################################################
-
-# Fit some ARMA models
+###Fit some ARMA models############################################################################
 
 main_theme <- theme(panel.grid = element_blank(),
                     panel.background = element_blank(),

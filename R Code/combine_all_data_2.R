@@ -1,3 +1,11 @@
+####################################
+# Amy Moyer & Michael Gilbert
+# IA 530 Final Project
+# 
+# this script combines the data in the Data folder into one
+# final data set for analysis
+#
+####################################
 library(tidyverse)
 library(lubridate)
 library(here)

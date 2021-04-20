@@ -1,3 +1,14 @@
+###############################
+# Amy Moyer & Michael Gilbert
+# IA 530 Final Project
+# 
+# The purpose of this file is to read in the BRFSS data that is in the 
+# folder Data/brfss.  This data may not be there if the script
+# get_brfss_data.py has not been run, but be warned, this is a lot of data.
+#
+###############################
+
+
 library(tidyverse)
 library(lubridate)
 library(here)
@@ -8,8 +19,6 @@ library(foreign)
 brfss_files <- list.files(here('Data','brfss'))
 
 all_data <- tibble()
-
-
 
 for(i in brfss_files){
   
