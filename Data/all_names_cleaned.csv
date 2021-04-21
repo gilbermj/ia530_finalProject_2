@@ -1,44 +1,44 @@
 var_name,clean_name,order,log
-month_end,Month End,-1,1
-ment24,Mental Health No Good Adolescents,2,1
-gen24,General Health No Good Adolescents,1,1
-ment25,Mental Health No Good Adults,5,1
-gen25,General Health No Good Adults,4,1
-divorced,Divorced/Widowed/Separated,10,1
+month_end,Month End,-1,0
+ment24,Mental Health No Good Adolescents,2,0
+gen24,General Health No Good Adolescents,1,0
+ment25,Mental Health No Good Adults,5,0
+gen25,General Health No Good Adults,4,0
+divorced,Divorced/Widowed/Separated,10,0
 apple,Apple Stock,7,1
 atandt,AT&T Stock,8,1
 verizon,Verizon Stock,9,1
-unemp,Unemployment Rate,12,1
-savings,Personal Savings Rate,11,1
-suicide24,Suicides Per Thousand Adolescents,3,1
-suicide25,Suicides Per Thousand Adults,6,1
-month_num,Month Number,-1,1
-month_name,Month Name,-1,1
-Apr,Apr,-1,1
-Aug,Aug,-1,1
-Dec,Dec,-1,1
-Feb,Feb,-1,1
-Jan,Jan,-1,1
-Jul,Jul,-1,1
-Jun,Jun,-1,1
-Mar,Mar,-1,1
-May,May,-1,1
-Nov,Nov,-1,1
-Oct,Oct,-1,1
-Sep,Sep,-1,1
-ment24_sa,Mental Health No Good Adolescents,2,1
-ment25_sa,Mental Health No Good Adults,5,1
-suicide24_sa,Suicides Per Thousand Adolescents,3,1
-suicide25_sa,Suicides Per Thousand Adults,6,1
-ment24_sa_station,Mental Health No Good Adolescents,2,1
-gen24_station,General Health No Good Adolescents,1,1
-ment25_sa_station,Mental Health No Good Adults,5,1
-gen25_station,General Health No Good Adults,4,1
-divorced_station,Divorced/Widowed/Separated,10,1
+unemp,Unemployment Rate,12,0
+savings,Personal Savings Rate,11,0
+suicide24,Suicides Per Thousand Adolescents,3,0
+suicide25,Suicides Per Thousand Adults,6,0
+month_num,Month Number,-1,0
+month_name,Month Name,-1,0
+Apr,Apr,-1,0
+Aug,Aug,-1,0
+Dec,Dec,-1,0
+Feb,Feb,-1,0
+Jan,Jan,-1,0
+Jul,Jul,-1,0
+Jun,Jun,-1,0
+Mar,Mar,-1,0
+May,May,-1,0
+Nov,Nov,-1,0
+Oct,Oct,-1,0
+Sep,Sep,-1,0
+ment24_sa,Mental Health No Good Adolescents,2,0
+ment25_sa,Mental Health No Good Adults,5,0
+suicide24_sa,Suicides Per Thousand Adolescents,3,0
+suicide25_sa,Suicides Per Thousand Adults,6,0
+ment24_sa_station,Mental Health No Good Adolescents,2,0
+gen24_station,General Health No Good Adolescents,1,0
+ment25_sa_station,Mental Health No Good Adults,5,0
+gen25_station,General Health No Good Adults,4,0
+divorced_station,Divorced/Widowed/Separated,10,0
 apple_station,Apple Stock,7,1
 atandt_station,AT&T Stock,8,1
 verizon_station,Verizon Stock,9,1
-unemp_station,Unemployment Rate,12,1
-savings_station,Personal Savings Rate,11,1
-suicide24_sa_station,Suicides Per Thousand Adolescents,3,1
-suicide25_sa_station,Suicides Per Thousand Adults,6,1
+unemp_station,Unemployment Rate,12,0
+savings_station,Personal Savings Rate,11,0
+suicide24_sa_station,Suicides Per Thousand Adolescents,3,0
+suicide25_sa_station,Suicides Per Thousand Adults,6,0

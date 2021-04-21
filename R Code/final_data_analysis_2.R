@@ -5,7 +5,7 @@
 # This file is the final analysis for the project
 # this includes functions and then code which are described below
 # 
-#
+# SET WORKING DIRECTORY TO SOURCE FILE LOCATION!!!!!!!!!!!!!!!!
 #
 ### Packages ################################################
 
@@ -216,7 +216,7 @@ var_models <- function(data,
       upper <- bind_cols(upper, !!name:=temp_irf$Upper[[1]])
       irf <- bind_cols(irf, !!name:=temp_irf$irf[[1]])
       
-      #print(name)
+      print(name)
     }
  
   }
@@ -312,7 +312,7 @@ clean_names <- read_csv(here('Data', 'all_names_cleaned.csv'))
 
 main_theme <- theme(panel.grid = element_blank(),
                     panel.background = element_blank(),
-                    plot.title = element_text(size=12),
+                    plot.title = element_text(size=14),
                     plot.subtitle = element_text(size=8),
                     axis.title.x = element_text(size=8),
                     axis.title.y = element_text(size=8),
@@ -661,7 +661,7 @@ main_theme <- theme(panel.grid = element_blank(),
                     axis.text.x = element_text(size=8),
                     axis.text.y = element_text(size=8))
 
-runs <- 10
+runs <- 1000
 out_months <- 18
 dpi <- 300
 height <- 5
@@ -673,7 +673,7 @@ width <- 17
 
 # General Health, Mental Health and Suicides for 24 and Below
 
-var_models(final_data_3, 
+temp_var_plots_1 <- var_models(final_data_3, 
             c('gen24_station', 'ment24_sa_station'), 
             out_months = out_months, 
             response = 'suicide24_sa_station', 
@@ -691,7 +691,7 @@ var_models(final_data_3,
 
 # Mental Health, General Health and Suicides for 24 and Below
 
-var_models(final_data_3, 
+temp_var_plots_1 <- var_models(final_data_3, 
            c('ment24_sa_station', 'gen24_station'), 
            out_months = out_months, 
            response = 'suicide24_sa_station', 
@@ -709,7 +709,7 @@ var_models(final_data_3,
 
 # Common  societal variables against 24 and below suicides.  Stock variables first and then divorced
 
-var_models(final_data_3, 
+temp_var_plots_1 <- var_models(final_data_3, 
            c('apple_station', 'atandt_station', 'verizon_station', 'divorced_station'), 
            out_months = out_months, 
            response = 'suicide24_sa_station', 
@@ -726,7 +726,7 @@ var_models(final_data_3,
            layout = NULL)
 
 # Common economic variables against 24 and below suicides
-var_models(final_data_3, 
+temp_var_plots_1 <- var_models(final_data_3, 
            c('unemp_station', 'savings_station'), 
            out_months = out_months, 
            response = 'suicide24_sa_station', 
@@ -749,7 +749,7 @@ width <- 11.5
 
 layout <- rbind(c(1,2,3), c(4,5,6), c(NA,7,NA))
 
-var_models(final_data_3, 
+temp_var_plots_1 <- var_models(final_data_3, 
            c('unemp_station','savings_station','apple_station','divorced_station','gen24_station','ment24_sa_station'), 
            out_months = out_months, 
            response = 'suicide24_sa_station', 
@@ -775,7 +775,7 @@ var_models(final_data_3,
 height <- 5
 width <- 17
 
-var_models(final_data_3, 
+temp_var_plots_1 <- var_models(final_data_3, 
            c('gen25_station', 'ment25_sa_station'), 
            out_months = out_months, 
            response = 'suicide25_sa_station', 
@@ -793,7 +793,7 @@ var_models(final_data_3,
 
 # Mental Health, General Health and Suicides for 25 and Above
 
-var_models(final_data_3, 
+temp_var_plots_1 <- var_models(final_data_3, 
            c('ment25_sa_station', 'gen25_station'), 
            out_months = out_months, 
            response = 'suicide25_sa_station', 
@@ -811,7 +811,7 @@ var_models(final_data_3,
 
 # Common  societal variables against 25 and Above suicides.  Stock variables first and then divorced
 
-var_models(final_data_3, 
+temp_var_plots_1 <- var_models(final_data_3, 
            c('apple_station', 'atandt_station', 'verizon_station', 'divorced_station'), 
            out_months = out_months, 
            response = 'suicide25_sa_station', 
@@ -828,7 +828,7 @@ var_models(final_data_3,
            layout = NULL)
 
 # Common economic variables against 25 and Above suicides
-var_models(final_data_3, 
+temp_var_plots_1 <- var_models(final_data_3, 
            c('unemp_station', 'savings_station'), 
            out_months = out_months, 
            response = 'suicide25_sa_station', 
@@ -851,7 +851,7 @@ width <- 11.5
 
 layout <- rbind(c(1,2,3), c(4,5,6), c(NA,7,NA))
 
-var_models(final_data_3, 
+temp_var_plots_1 <- var_models(final_data_3, 
            c('unemp_station','savings_station','apple_station','divorced_station','gen25_station','ment25_sa_station'), 
            out_months = out_months, 
            response = 'suicide25_sa_station', 
@@ -904,10 +904,10 @@ temp_var_plots_2 <- var_models(final_data_3,
 # Instead of graphing them as normal, graph the responses of these two models in one graph
 
 temp_list <- c(list(temp_var_plots_1[[1]] +  
-                      scale_y_continuous(labels = percent, limits=c(-0.015,0.05)) + 
+                      scale_y_continuous(labels = percent, limits=c(-0.00005,0.0002)) + 
                       labs(x='Month',y='',title=paste('Response: ','Suicides Per Thousand Adolescents',' \nShock: ','Suicides Per Thousand Adults',sep=''))), 
                list(temp_var_plots_2[[1]] +  
-                      scale_y_continuous(labels = percent, limits=c(-0.015,0.05)) + 
+                      scale_y_continuous(labels = percent, limits=c(-0.00005,0.0002)) + 
                       labs(x='Month',y='',title=paste('Response: ','Suicides Per Thousand Adults',' \nShock: ','Suicides Per Thousand Adolescents',sep=''))))
 
 grid <- grid.arrange(grobs=temp_list, nrow=1,top='')
