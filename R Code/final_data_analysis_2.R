@@ -323,8 +323,8 @@ main_theme <- theme(panel.grid = element_blank(),
 
 
 # the "common variables" or the variables that are not age dependent
-common_vars <- c('apple', 'atandt', 'verizon', 'divorced', 'savings', 'unemp')
-age_vars <- c('gen24', 'ment24', 'suicide24', 'gen25', 'ment25', 'suicide25')
+common_vars <- c('unemp', 'savings', 'apple', 'atandt', 'verizon', 'divorced')
+age_vars <- c('gen24', 'ment24', 'suicide24', 'ment25', 'gen25', 'suicide25')
 
 dollars <- c('apple', 'atandt', 'verizon')
 percents <- c('ment24', 'gen24', 'ment25', 'gen25', 'unemp', 'divorced')
@@ -551,15 +551,15 @@ pretty_stationary <- final_stationarity %>%
   mutate_if(is.numeric,~round(.,4)) %>%
   gt(rowname_col = 'clean_name') %>%
   tab_row_group(
-    group = html('Age Specific Variables'),
-    rows = 1:6
+    group = html('Economic Variables'),
+    rows = 1:2
   ) %>%
   tab_row_group(
-    group = html('Common Variables'),
-    rows = 7:12
+    group = html('Societal Variables'),
+    rows = 3:12
   ) %>%
   row_group_order(
-    groups = c('Age Specific Variables', 'Common Variables')
+    groups = c('Economic Variables', 'Societal Variables')
   )  %>%
   tab_spanner(
     label = 'Non-adjusted',
@@ -640,7 +640,7 @@ gt::gtsave(pretty_stationary ,here('Plots', 'stationarity_test_results.png'))
 
 ### Graph variables after stationarity adjustments####################################################################
 
-common_vars <- c('apple_station', 'atandt_station', 'verizon_station', 'divorced_station', 'savings_station', 'unemp_station')
+common_vars <- c('unemp_station', 'savings_station', 'divorced_station','apple_station', 'atandt_station', 'verizon_station')
 age_vars <- c('gen24_station', 'ment24_sa_station', 'suicide24_sa_station', 'gen25_station', 'ment25_sa_station', 'suicide25_sa_station')
 
 temp_list <- graph_vars(final_data_3, common_vars, clean_names, dollars, percents, main_theme)
@@ -666,7 +666,7 @@ runs <- 1000
 out_months <- 18
 dpi <- 300
 height <- 5
-width <- 17
+width <- 14
 
 ### Age 24 and Below (Adolescents)##############################################################
 
@@ -710,6 +710,11 @@ temp_var_plots_1 <- var_models(final_data_3,
 
 # Common  societal variables against 24 and below suicides.  Stock variables first and then divorced
 
+height <- 7
+width <- 11.5
+
+layout <- rbind(c(1,1,2,2,3,3), c(NA,4,4,5,5,NA))
+
 temp_var_plots_1 <- var_models(final_data_3, 
            c('apple_station', 'atandt_station', 'verizon_station', 'divorced_station'), 
            out_months = out_months, 
@@ -724,9 +729,13 @@ temp_var_plots_1 <- var_models(final_data_3,
            dpi = dpi,
            width = width,
            height = height,
-           layout = NULL)
+           layout = layout)
 
 # Common economic variables against 24 and below suicides
+
+height <- 5
+width <- 14
+
 temp_var_plots_1 <- var_models(final_data_3, 
            c('unemp_station', 'savings_station'), 
            out_months = out_months, 
@@ -744,7 +753,6 @@ temp_var_plots_1 <- var_models(final_data_3,
            layout = NULL)
 
 # All variables for 25 and Above.  Listed least endogenous to most endogenous
-
 height <- 7
 width <- 11.5
 
@@ -774,7 +782,7 @@ temp_var_plots_1 <- var_models(final_data_3,
 # General Health, Mental Health and Suicides for 25 and Above
 
 height <- 5
-width <- 17
+width <- 14
 
 temp_var_plots_1 <- var_models(final_data_3, 
            c('gen25_station', 'ment25_sa_station'), 
@@ -812,6 +820,12 @@ temp_var_plots_1 <- var_models(final_data_3,
 
 # Common  societal variables against 25 and Above suicides.  Stock variables first and then divorced
 
+
+height <- 7
+width <- 11.5
+
+layout <- rbind(c(1,1,2,2,3,3), c(NA,4,4,5,5,NA))
+
 temp_var_plots_1 <- var_models(final_data_3, 
            c('apple_station', 'atandt_station', 'verizon_station', 'divorced_station'), 
            out_months = out_months, 
@@ -826,9 +840,14 @@ temp_var_plots_1 <- var_models(final_data_3,
            dpi = dpi,
            width = width,
            height = height,
-           layout = NULL)
+           layout = layout)
 
 # Common economic variables against 25 and Above suicides
+
+
+height <- 5
+width <- 14
+
 temp_var_plots_1 <- var_models(final_data_3, 
            c('unemp_station', 'savings_station'), 
            out_months = out_months, 
@@ -925,7 +944,7 @@ main_theme <- theme(panel.grid = element_blank(),
                     axis.text.x = element_text(size=8),
                     axis.text.y = element_text(size=8))
 # max lag we will check
-max_lag <- 24
+max_lag <- 36
 
 ardl_aic <- c()
 ardl_models <- c()
@@ -993,7 +1012,7 @@ gt::gtsave(best_model_pretty_table,here('Plots', 'age24_arma_best_coef.png'))
 
 # Do the same for over 25
 
-max_lag <- 24
+max_lag <- 36
 
 ardl_aic <- c()
 ardl_models <- c()

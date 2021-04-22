@@ -29,4 +29,5 @@ The following is a ReadMe file for the organization of our code for the final pr
     - final_data_analysis_2.R: code completes all analysis for the paper
     - get_brfss_data.py: code downloads the BRFSS data from the web, unzips it and puts it in the Data/brfss folder
     - read_brfss_data.R: reads the data downloaded in the Data/brfss folder and puts it into the all_brfss_data.csv
+	- summary_table.R: reads the final_data.csv and puts into a nice, pretty table
 4. .here: necessary file to indicate the parent directory for the snippits of code in the R Code folder
