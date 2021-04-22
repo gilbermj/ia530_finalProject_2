@@ -400,7 +400,8 @@ suicide25_coef_coef_pretty_table <- suicide25_coef_coef_tibble %>%
                 'Standard Error',
                 'P-value') %>%
   mutate_if(is.numeric, ~round(.,4))%>%
-  gt() 
+  gt() %>%
+  tab_options(table.font.names = c('Times New Roman', NULL))
 
 
 gt::gtsave(suicide25_coef_coef_pretty_table ,here('Plots', 'suicide25_coef.png'))
@@ -549,7 +550,6 @@ pretty_stationary <- final_stationarity %>%
                 df_result_station:kpss_result_station) %>%
   mutate_if(is.numeric,~round(.,4)) %>%
   gt(rowname_col = 'clean_name') %>%
-  tab_header(title = html('<b>Unit Root Tests</b>')) %>%
   tab_row_group(
     group = html('Age Specific Variables'),
     rows = 1:6
@@ -633,7 +633,8 @@ pretty_stationary <- final_stationarity %>%
                       'df_result_station',
                       'pp_result_station',
                       'adfgls_result_station',
-                      'kpss_result_station'))
+                      'kpss_result_station')) %>%
+  tab_options(table.font.names = c('Times New Roman', NULL))
 
 gt::gtsave(pretty_stationary ,here('Plots', 'stationarity_test_results.png'))
 
@@ -985,7 +986,8 @@ best_model_pretty_table <- best_model_tibble %>%
                 'Standard Error',
                 'P-value') %>%
   mutate_if(is.numeric, ~round(.,4)) %>%
-  gt() 
+  gt() %>%
+  tab_options(table.font.names = c('Times New Roman', NULL))
 
 gt::gtsave(best_model_pretty_table,here('Plots', 'age24_arma_best_coef.png'))
 
@@ -1048,6 +1050,7 @@ best_model_pretty_table <- best_model_tibble %>%
                 'Standard Error',
                 'P-value') %>%
   mutate_if(is.numeric, ~round(.,4)) %>%
-  gt() 
+  gt() %>%
+  tab_options(table.font.names = c('Times New Roman', NULL))
 
 gt::gtsave(best_model_pretty_table,here('Plots', 'age25_arma_best_coef.png'))
