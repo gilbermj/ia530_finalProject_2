@@ -316,8 +316,9 @@ main_theme <- theme(panel.grid = element_blank(),
                     plot.subtitle = element_text(size=8),
                     axis.title.x = element_text(size=8),
                     axis.title.y = element_text(size=8),
-                    axis.text.x = element_text(size=8),
-                    axis.text.y = element_text(size=8))
+                    axis.text.x = element_text(size=10, face='bold'),
+                    axis.text.y = element_text(size=10, face='bold'),
+                    panel.border = element_rect(colour = "black", fill=NA, size=0.5))
 
 ### Graph Variables ####################################################################
 
@@ -655,12 +656,13 @@ ggsave(here('Plots', 'age_variables_stationary.png'),plot=grid,dpi=300, width = 
 
 main_theme <- theme(panel.grid = element_blank(),
                     panel.background = element_blank(),
-                    plot.title = element_text(size=12),
+                    plot.title = element_text(size=14),
                     plot.subtitle = element_text(size=8),
                     axis.title.x = element_text(size=8),
                     axis.title.y = element_text(size=8),
-                    axis.text.x = element_text(size=8),
-                    axis.text.y = element_text(size=8))
+                    axis.text.x = element_text(size=10, face='bold'),
+                    axis.text.y = element_text(size=10, face='bold'),
+                    panel.border = element_rect(colour = "black", fill=NA, size=0.5))
 
 runs <- 1000
 out_months <- 18
@@ -941,8 +943,9 @@ main_theme <- theme(panel.grid = element_blank(),
                     plot.subtitle = element_text(size=8),
                     axis.title.x = element_text(size=8),
                     axis.title.y = element_text(size=8),
-                    axis.text.x = element_text(size=8),
-                    axis.text.y = element_text(size=8))
+                    axis.text.x = element_text(size=10, face='bold'),
+                    axis.text.y = element_text(size=10, face='bold'),
+                    panel.border = element_rect(colour = "black", fill=NA, size=0.5))
 # max lag we will check
 max_lag <- 36
 
