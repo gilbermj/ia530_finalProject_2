@@ -324,7 +324,7 @@ main_theme <- theme(panel.grid = element_blank(),
 
 # the "common variables" or the variables that are not age dependent
 common_vars <- c('unemp', 'savings', 'apple', 'atandt', 'verizon', 'divorced')
-age_vars <- c('gen24', 'ment24', 'suicide24', 'ment25', 'gen25', 'suicide25')
+age_vars <- c('gen24', 'ment24', 'suicide24', 'gen25', 'ment25', 'suicide25')
 
 dollars <- c('apple', 'atandt', 'verizon')
 percents <- c('ment24', 'gen24', 'ment25', 'gen25', 'unemp', 'divorced')
