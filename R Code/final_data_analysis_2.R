@@ -153,7 +153,8 @@ var_models <- function(data,
                        dpi = 300,
                        width = 10,
                        height = 10,
-                       layout=NULL){
+                       layout=NULL,
+                       VD=F){
   
   # Function to fit a VAR model for the variables indicated and return the 
   # irf functions graphed in a list 
@@ -279,6 +280,40 @@ var_models <- function(data,
            width = width, 
            height = height, 
            units='in')
+    
+  }
+  
+  temp_fevd_results <- tibble(horizon=1:36)
+  
+  if(VD){
+    # get the variance decomposition
+    temp_fevd <- fevd(var_model, n.ahead=36)
+    
+    for(name in ts_names){
+      temp_fevd_results <- bind_cols(temp_fevd_results, !!name:=temp_fevd[[name]][,response]*100)
+      
+    }
+    
+    pretty_decomp <- temp_fevd_results %>%
+      filter(horizon %in% c(1,3,6,12,18,24,36)) %>%
+      # add clean names to table
+      pivot_longer(cols = -horizon, names_to='var_name', values_to = 'percent') %>%
+      left_join(clean_names, by='var_name') %>%
+      dplyr::select(clean_name, horizon, percent) %>%
+      mutate(clean_name = gsub('/','/\n',clean_name)) %>%
+      pivot_wider(names_from='clean_name', values_from='percent') %>%
+      mutate_at(vars(-horizon), ~round(.,4)) %>%
+      gt(rowname_col = 'horizon') %>%
+      cols_label(
+        horizon = 'Horizon') %>%
+      tab_header(title = html('Variance Decomposition'), subtitle = paste('Percent contribution of each shock to overall variability in ',response_name,sep='')) %>%
+      tab_options(table.font.size = 10,
+                  table.font.names = c('Times New Roman', NULL)) %>%
+      cols_width(
+        everything() ~ px(80)
+      )
+
+    gt::gtsave(pretty_decomp ,here('Plots', paste('VD',file_name,sep='_')))
     
   }
   
@@ -754,7 +789,7 @@ temp_var_plots_1 <- var_models(final_data_3,
            height = height,
            layout = NULL)
 
-# All variables for 25 and Above.  Listed least endogenous to most endogenous
+# All variables for 24 and Below.  Listed least endogenous to most endogenous
 height <- 7
 width <- 11.5
 
@@ -774,7 +809,8 @@ temp_var_plots_1 <- var_models(final_data_3,
            dpi = dpi,
            width = width,
            height = height,
-           layout=layout)
+           layout=layout,
+           VD=T)
 
 
 ### Age 25 and Above (Adults)#######################################################################
@@ -887,7 +923,8 @@ temp_var_plots_1 <- var_models(final_data_3,
            dpi = dpi,
            width = width,
            height = height,
-           layout=layout)
+           layout=layout,
+           VD=T)
 
 # Fit two models.  First 24 and below suicides vs 25 and above suicides
 # Don't save these variables
